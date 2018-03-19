@@ -1,0 +1,32 @@
+{
+  "name": "api-client-node",
+  "version": "0.0.1",
+  "description": "Symphony API Client for NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+     "test": "jest"
+  },
+  "dependencies": {
+    "kew": "^0.7.0"
+  },
+  "engines": {
+    "node": "6.10.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SymphonyPlatformSolutions/api-client-node.git"
+  },
+  "keywords": [
+    "node",
+    "symphony-chat"
+  ],
+  "author": "Symphony Platform Solutions",
+  "contributors": [
+    "Olivier Poupeney <olivier.poupeney@symphony.com>"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^22.4.2"
+  }
+}

@@ -1,0 +1,9 @@
+{
+    "hostname": "sup-api.symphony.com",
+    "port": 443,
+    "path": "/sessionauth/v1/authenticate",
+    "method": "POST",
+    "key": "/certificates/bot.user1.pem",
+    "cert": "/certificates/bot.user1.pem",
+    "passphrase": "changeit"
+}
