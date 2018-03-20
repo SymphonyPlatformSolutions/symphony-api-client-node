@@ -4,13 +4,25 @@ test('Load config from file', () => {
   expect.assertions(1);
   return SymConfigLoader.loadFromFile('/../../config.json').then(data => {
     expect(data).toEqual({
-        "hostname": "sup-api.symphony.com",
-        "port": 443,
-        "path": "/sessionauth/v1/authenticate",
-        "method": "POST",
-        "key": "/certificates/bot.user1.pem",
-        "cert": "/certificates/bot.user1.pem",
-        "passphrase": "changeit"
+        "sessionAuthHost": "sup-api.symphony.com",
+        "sessionAuthPort": 443,
+        "keyAuthHost": "sup-keyauth.symphony.com",
+        "keyAuthPort": 443,
+        "podHost": "sup.symphony.com",
+        "podPort": 443,
+        "agentHost": "sup-agent.symphony.com",
+        "agentPort": 443,
+        "botCertPath": "/../../certificates/",
+        "botCertName": "bot.user1.pem",
+        "botCertPassword": "changeit",
+        "botEmailAddress": "",
+        "appCertPath": "",
+        "appCertName": "",
+        "appCertPassword": "",
+        "proxyURL": "",
+        "proxyUsername": "",
+        "proxyPassword": "",
+        "authTokenRefreshPeriod": "30"
     });
   });
 });

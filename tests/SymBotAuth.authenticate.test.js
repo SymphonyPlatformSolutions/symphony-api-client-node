@@ -8,13 +8,25 @@ test('Authenticates the Bot app', () => {
 
   return SymBotAuth.authenticate(
     {
-        "hostname": "sup-api.symphony.com",
-        "port": 443,
-        "path": "/sessionauth/v1/authenticate",
-        "method": "POST",
-        "key": "/../../certificates/bot.user1.pem",
-        "cert": "/../../certificates/bot.user1.pem",
-        "passphrase": "changeit"
+        "sessionAuthHost": "sup-api.symphony.com",
+        "sessionAuthPort": 443,
+        "keyAuthHost": "sup-keyauth.symphony.com",
+        "keyAuthPort": 443,
+        "podHost": "sup.symphony.com",
+        "podPort": 443,
+        "agentHost": "sup-agent.symphony.com",
+        "agentPort": 443,
+        "botCertPath": "/../../certificates/",
+        "botCertName": "bot.user1.pem",
+        "botCertPassword": "changeit",
+        "botEmailAddress": "",
+        "appCertPath": "",
+        "appCertName": "",
+        "appCertPassword": "",
+        "proxyURL": "",
+        "proxyUsername": "",
+        "proxyPassword": "",
+        "authTokenRefreshPeriod": "30"
     }
   ).then(data => {
 
