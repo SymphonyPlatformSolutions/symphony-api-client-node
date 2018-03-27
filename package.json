@@ -1,14 +1,16 @@
 {
-  "name": "api-client-node",
+  "name": "symphony-api-client-node",
   "version": "0.0.1",
   "description": "Symphony API Client for NodeJS",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-     "test": "jest"
+    "test": "jest"
   },
   "dependencies": {
-    "kew": "^0.7.0"
+    "form-data": "^2.3.2",
+    "kew": "^0.7.0",
+    "pubsub-js": "^1.6.0"
   },
   "engines": {
     "node": "6.10.3"

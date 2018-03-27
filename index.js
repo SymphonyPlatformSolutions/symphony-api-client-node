@@ -1,3 +1,4 @@
-var SymConfigLoader = require('./lib/SymConfigLoader');
+const SymBotClient = require('./lib/SymBotClient');
 
-SymConfigLoader.loadFromFile();
+var Symphony = SymBotClient;
+module.exports = Symphony;
