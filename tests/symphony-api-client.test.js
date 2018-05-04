@@ -2,12 +2,16 @@ const SymBotClient = require('../lib/SymBotClient');
 
 var testContext = {};
 
-jest.setTimeout(10000);
+jest.setTimeout(15000);
 
 beforeAll(() => {
   return SymBotClient.initBot( __dirname + '/../config.json' ).then(data => {
     testContext.symAuth = data;
   })
+});
+
+afterAll(() => {
+  SymBotClient.stopDatafeedEventsService();
 });
 
 test('Retrieve sessionAuthToken', () => {
@@ -22,7 +26,6 @@ test('Execute getDatafeedEventsService', (done) => {
 
   const botHearsRequest = ( event, messages ) => {
     expect(messages[0].stream).toBeDefined();
-    SymBotClient.stopDatafeedEventsService();
     testContext.streamId = messages[0].stream.streamId;
     done();
   };
