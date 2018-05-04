@@ -1,6 +1,6 @@
 {
   "name": "symphony-api-client-node",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Symphony API Client for NodeJS",
   "main": "index.js",
   "scripts": {
