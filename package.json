@@ -10,6 +10,7 @@
   "dependencies": {
     "form-data": "^2.3.2",
     "kew": "^0.7.0",
+    "njwt": "^0.4.0",
     "pubsub-js": "^1.6.0"
   },
   "engines": {
