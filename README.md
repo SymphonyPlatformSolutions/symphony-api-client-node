@@ -20,3 +20,5 @@ Symphony.initBot(__dirname + '/config.json').then( (symAuth) => {
   Symphony.getDatafeedEventsService( botHearsSomething );
 })
 ```
+
+The `config.json` file is described on the [Configuration page](https://symphony-developers.symphony.com/docs/configuration-1) of the Symphony Developer Guide.
