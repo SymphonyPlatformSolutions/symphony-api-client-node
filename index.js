@@ -1,5 +1,5 @@
-const SymBotClient = require('./lib/SymBotClient');
+const SymBotClient = require('./lib/SymBotClient')
 
-var Symphony = SymBotClient;
+var Symphony = SymBotClient
 
-module.exports = Symphony;
+module.exports = Symphony
