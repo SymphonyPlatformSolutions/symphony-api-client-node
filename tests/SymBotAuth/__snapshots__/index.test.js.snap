@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SymBotAuth kmAuthenticate when the auth type is not rsa POSTs to /keyauth/v1/authenticate with the correct parameters 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": "agent",
+      "cert": "Contents of /I am the cert",
+      "hostname": "https://key.example.com",
+      "key": "Contents of /I am the key",
+      "method": "POST",
+      "passphrase": "Passphrase",
+      "path": "/keyauth/v1/authenticate",
+      "port": 5678,
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotAuth sessionAuthenticate when the auth type is not rsa POSTs to /sessionauth/v1/authenticate with the correct parameters 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": "agent",
+      "cert": "Contents of /I am the cert",
+      "hostname": "https://session.example.com",
+      "key": "Contents of /I am the key",
+      "method": "POST",
+      "passphrase": "Passphrase",
+      "path": "/sessionauth/v1/authenticate",
+      "port": 1234,
+    },
+    [Function],
+  ],
+]
+`;
