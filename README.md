@@ -47,3 +47,10 @@ Create a config.json file in your project.  Below is a sample configuration whic
         }
 
 Note: The proxyURL value should be defined as follows 'http://proxy.company.com:port'
+
+#Release Notes
+
+##1.0.0
+- MessagesClient now returns the original base64-encoded content on an attachment instead of uniformly converting to ascii.  This change allows retrieval of binary, base64 content, but impacts those clients who need ascii-encoded data.
+- SymConfigLoader now checks for either undefined, or empty values for client proxy configuration in config.json (`proxyURL`)
+- UsersClient now properly allows either uid-based, or email-based retrieval of user info in accordance with the users-lookup-v3 endoint as documented here: https://rest-api.symphony.com/reference#users-lookup-v3 
