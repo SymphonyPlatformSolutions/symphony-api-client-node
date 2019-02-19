@@ -33,7 +33,7 @@ describe('SymBotAuth', () => {
           sessionAuthHost: "https://session.example.com",
           sessionAuthPort: 1234,
           botCertPassword: "Passphrase",
-          proxy: "agent"
+          sessionAuthProxy: "agent"
         });
 
         expect(mockHttps.request.mock.calls).toMatchSnapshot();
@@ -51,7 +51,7 @@ describe('SymBotAuth', () => {
           keyAuthHost: "https://key.example.com",
           keyAuthPort: 5678,
           botCertPassword: "Passphrase",
-          proxy: "agent"
+          keyAuthProxy: "agent"
         });
 
         expect(mockHttps.request.mock.calls).toMatchSnapshot();

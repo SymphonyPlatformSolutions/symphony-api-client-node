@@ -28,22 +28,33 @@ Create a config.json file in your project.  Below is a sample configuration whic
         {
           "sessionAuthHost": "podDomain-api.symphony.com",
           "sessionAuthPort": 8444,
+          "sessionAuthProxyURL": "",
+          "sessionAuthProxyUsername": "",
+          "sessionAuthProxyPassword": "",
           "keyAuthHost": "podDomain.symphony.com",
           "keyAuthPort": 8444,
+          "keyAuthProxyURL": "",
+          "keyAuthProxyUsername": "",
+          "keyAuthProxyPassword": "",
           "podHost": "podDomain.symphony.com",
           "podPort": 443,
+          "podProxyURL": "",
+          "podProxyUsername": "",
+          "podProxyPassword": "",
           "agentHost": "podDomain.symphony.com",
           "agentPort": 443,
+          "agentProxyURL": "",
+          "agentProxyUsername": "",
+          "agentProxyPassword": "",
           "botCertPath": "PATH",
           "botCertName": "BOT-CERT-NAME",
+          "botKeyName": "BOT-CERT-NAME",
           "botCertPassword": "BOT-PASSWORD",
           "botEmailAddress": "BOT-EMAIL-ADDRESS",
           "appCertPath": "",
           "appCertName": "",
-          "appCertPassword": "",
-          "proxyURL": "",
-          "proxyUsername": "",
-          "proxyPassword": ""
+          "appKeyName": "",
+          "appCertPassword": ""
         }
 
 Note: The proxyURL value should be defined as follows 'http://proxy.company.com:port'
