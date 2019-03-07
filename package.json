@@ -8,11 +8,11 @@
     "test": "jest"
   },
   "dependencies": {
-    "form-data": "^2.3.2",
+    "form-data": "^2.3.3",
     "https-proxy-agent": "^2.2.1",
     "kew": "^0.7.0",
-    "njwt": "^0.4.0",
-    "pubsub-js": "^1.6.0"
+    "njwt": "^1.0.0",
+    "pubsub-js": "^1.7.0"
   },
   "engines": {
     "node": "6.10.3"
@@ -32,7 +32,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "jest": "^22.4.2"
+    "jest": "^24.3.0"
   },
   "jest": {
     "verbose": true
