@@ -54,6 +54,9 @@ Note: The proxyURL value should be defined as follows 'http://proxy.company.com:
 - Fix to handle API calls returning HTTP 204 - No Content
 - Security updates to latest packages within package.json
 
+## 1.0.1
+- Expose MessagesClient.getMessage() via SymBotClient
+
 ## 1.0.0
 - MessagesClient now returns the original base64-encoded content on an attachment instead of uniformly converting to ascii.  This change allows retrieval of binary, base64 content, but impacts those clients who need ascii-encoded data.
 - SymConfigLoader now checks for either undefined, or empty values for client proxy configuration in config.json (`proxyURL`)
