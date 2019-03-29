@@ -37,7 +37,7 @@ Create a config.json file in your project.  Below is a sample configuration whic
     "podPort": 443,
     "agentHost": "my-company-name.symphony.com",
     "agentPort": 443,
-    
+
     // For bots only
     "botUsername": "my-bot-name",
     "botEmailAddress": "bot@company.com",
@@ -48,7 +48,7 @@ Create a config.json file in your project.  Below is a sample configuration whic
     "botCertPath": "/path/to/bot-cert/",
     "botCertName": "bot-cert.p12",
     "botCertPassword": "bot-cert-password",
-    
+
     // For extension apps only
     "appId": "",
     // For extension apps using RSA authentication
@@ -58,18 +58,18 @@ Create a config.json file in your project.  Below is a sample configuration whic
     "appCertPath": "/path/to/app-cert/",
     "appCertName": "app-cert.p12",
     "appCertPassword": "app-cert-password",
-    
+
     // Optional: If the connection to the pod (but not the agent) needs to run through a proxy
     "podProxyURL": "http://localhost:3128",
     "podProxyUsername": "proxy-username",
     "podProxyPassword": "proxy-password",
-    
+
     // Optional: If the connection to both the pod and the agent needs to run through a proxy
-    //           Do not include the podProxy properties if using this
+    // Do not include the podProxy properties if using this
     "proxyURL": "http://localhost:3128",
     "proxyUsername": "proxy-username",
     "proxyPassword": "proxy-password",
-    
+
     // Optional: If the connection to the key manager needs to run through a proxy
     "keyManagerProxyURL": "http://localhost:3128",
     "keyManagerProxyUsername": "proxy-username",
@@ -78,6 +78,10 @@ Create a config.json file in your project.  Below is a sample configuration whic
 ```
 
 # Release Notes
+
+## 1.0.3
+- Fix to handle support for PKCS12 certificate files
+- Enhancement for Proxy Support. Allow configuring pod, agent and key manager proxies independently.
 
 ## 1.0.2
 - Fix to handle API calls returning HTTP 204 - No Content
