@@ -29,7 +29,6 @@ describe('SymBotAuth', () => {
         SymBotAuth.sessionAuthenticate({
           botCertPath: "/",
           botCertName: "I am the cert",
-          botKeyName: "I am the key",
           sessionAuthHost: "https://session.example.com",
           sessionAuthPort: 1234,
           botCertPassword: "Passphrase",
@@ -47,7 +46,6 @@ describe('SymBotAuth', () => {
         SymBotAuth.kmAuthenticate({
           botCertPath: "/",
           botCertName: "I am the cert",
-          botKeyName: "I am the key",
           keyAuthHost: "https://key.example.com",
           keyAuthPort: 5678,
           botCertPassword: "Passphrase",
