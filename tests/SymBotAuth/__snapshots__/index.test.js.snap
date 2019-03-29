@@ -5,12 +5,11 @@ Array [
   Array [
     Object {
       "agent": "agent",
-      "cert": "Contents of /I am the cert",
       "hostname": "https://key.example.com",
-      "key": "Contents of /I am the key",
       "method": "POST",
       "passphrase": "Passphrase",
       "path": "/keyauth/v1/authenticate",
+      "pfx": "Contents of /I am the cert",
       "port": 5678,
     },
     [Function],
@@ -23,12 +22,11 @@ Array [
   Array [
     Object {
       "agent": "agent",
-      "cert": "Contents of /I am the cert",
       "hostname": "https://session.example.com",
-      "key": "Contents of /I am the key",
       "method": "POST",
       "passphrase": "Passphrase",
       "path": "/sessionauth/v1/authenticate",
+      "pfx": "Contents of /I am the cert",
       "port": 1234,
     },
     [Function],
