@@ -25,28 +25,57 @@ The `config.json` file is described on the [Configuration page](https://symphony
 
 Create a config.json file in your project.  Below is a sample configuration which includes the properties that can be configured:
 
-        {
-          "sessionAuthHost": "podDomain-api.symphony.com",
-          "sessionAuthPort": 8444,
-          "keyAuthHost": "podDomain.symphony.com",
-          "keyAuthPort": 8444,
-          "podHost": "podDomain.symphony.com",
-          "podPort": 443,
-          "agentHost": "podDomain.symphony.com",
-          "agentPort": 443,
-          "botCertPath": "PATH",
-          "botCertName": "BOT-CERT-NAME",
-          "botCertPassword": "BOT-PASSWORD",
-          "botEmailAddress": "BOT-EMAIL-ADDRESS",
-          "appCertPath": "",
-          "appCertName": "",
-          "appCertPassword": "",
-          "proxyURL": "",
-          "proxyUsername": "",
-          "proxyPassword": ""
-        }
 
-Note: The proxyURL value should be defined as follows 'http://proxy.company.com:port'
+```json5
+{
+    // Mandatory section
+    "sessionAuthHost": "my-company-name-api.symphony.com",
+    "sessionAuthPort": 8444,
+    "keyAuthHost": "my-company-name-api.symphony.com",
+    "keyAuthPort": 8444,
+    "podHost": "my-company-name.symphony.com",
+    "podPort": 443,
+    "agentHost": "my-company-name.symphony.com",
+    "agentPort": 443,
+    
+    // For bots only
+    "botUsername": "my-bot-name",
+    "botEmailAddress": "bot@company.com",
+    // For bots using RSA authentication
+    "botPrivateKeyPath": "/path/to/rsa/private-key/",
+    "botPrivateKeyName": "bot-private-key.pem",
+    // For bots using certificate authentication
+    "botCertPath": "/path/to/bot-cert/",
+    "botCertName": "bot-cert.p12",
+    "botCertPassword": "bot-cert-password",
+    
+    // For extension apps only
+    "appId": "",
+    // For extension apps using RSA authentication
+    "appPrivateKeyPath": "",
+    "appPrivateKeyName": "",
+    // For extension apps using certificate authentication
+    "appCertPath": "/path/to/app-cert/",
+    "appCertName": "app-cert.p12",
+    "appCertPassword": "app-cert-password",
+    
+    // Optional: If the connection to the pod (but not the agent) needs to run through a proxy
+    "podProxyURL": "http://localhost:3128",
+    "podProxyUsername": "proxy-username",
+    "podProxyPassword": "proxy-password",
+    
+    // Optional: If the connection to both the pod and the agent needs to run through a proxy
+    //           Do not include the podProxy properties if using this
+    "proxyURL": "http://localhost:3128",
+    "proxyUsername": "proxy-username",
+    "proxyPassword": "proxy-password",
+    
+    // Optional: If the connection to the key manager needs to run through a proxy
+    "keyManagerProxyURL": "http://localhost:3128",
+    "keyManagerProxyUsername": "proxy-username",
+    "keyManagerProxyPassword": "proxy-password",
+}
+```
 
 # Release Notes
 
