@@ -11,12 +11,10 @@ describe('SymBotAuth', () => {
       return "Contents of " + path;
     });
 
-    debugger;
-    mockHttps.request = jest.fn(() => {
-      return {
-        end: jest.fn()
-      };
-    });
+    mockHttps.request = jest.fn(() => ({
+      end: jest.fn(),
+      on: jest.fn(),
+    }));
   });
 
   afterEach(() => {
