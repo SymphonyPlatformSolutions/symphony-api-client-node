@@ -6,7 +6,7 @@ const mockFs = require('fs');
 describe('SymConfigLoader', () => {
 
   afterEach(() => {
-    jest.resetModules();
+    jest.clearAllMocks();
   });
 
   describe('proxy config', () => {
