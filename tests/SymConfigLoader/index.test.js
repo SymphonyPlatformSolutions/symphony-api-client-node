@@ -11,7 +11,7 @@ describe('SymConfigLoader', () => {
 
   describe('proxy config', () => {
     describe('agent proxy', () => {
-      it('should create a proxy', () => {
+      it('creates a proxy', () => {
         mockFs.readFile = jest.fn((path, cb) => {
           return cb(null, JSON.stringify({
             proxyURL: 'https://agent-proxy-url/',
@@ -24,7 +24,7 @@ describe('SymConfigLoader', () => {
         });
       });
 
-      it('should create an authenticated proxy', () => {
+      it('creates an authenticated proxy', () => {
         mockFs.readFile = jest.fn((path, cb) => {
           return cb(null, JSON.stringify({
             proxyURL: 'https://agent-proxy-url/',
@@ -41,7 +41,7 @@ describe('SymConfigLoader', () => {
         });
       });
 
-      it('should encode special characters', () => {
+      it('encodes special characters', () => {
         mockFs.readFile = jest.fn((path, cb) => {
           return cb(null, JSON.stringify({
             proxyURL: 'https://agent-proxy-url/',
@@ -60,7 +60,7 @@ describe('SymConfigLoader', () => {
     });
 
     describe('pod proxy', () => {
-      it('should create a proxy', () => {
+      it('creates a proxy', () => {
         mockFs.readFile = jest.fn((path, cb) => {
           return cb(null, JSON.stringify({
             proxyURL: 'https://pod-proxy-url/',
@@ -73,7 +73,7 @@ describe('SymConfigLoader', () => {
         });
       });
 
-      it('should create an authenticated proxy', () => {
+      it('creates an authenticated proxy', () => {
         mockFs.readFile = jest.fn((path, cb) => {
           return cb(null, JSON.stringify({
             proxyURL: 'https://pod-proxy-url/',
@@ -90,7 +90,7 @@ describe('SymConfigLoader', () => {
         });
       });
 
-      it('should encode special characters', () => {
+      it('encodes special characters', () => {
         mockFs.readFile = jest.fn((path, cb) => {
           return cb(null, JSON.stringify({
             proxyURL: 'https://pod-proxy-url/',
@@ -107,7 +107,7 @@ describe('SymConfigLoader', () => {
         });
       });
 
-      it('should create a proxy for only the pod', () => {
+      it('creates a proxy for only the pod', () => {
         mockFs.readFile = jest.fn((path, cb) => {
           return cb(null, JSON.stringify({
             podProxyURL: 'https://pod-proxy-url/',
@@ -123,7 +123,7 @@ describe('SymConfigLoader', () => {
     });
 
     describe('keyManager proxy', () => {
-      it('should create a proxy', () => {
+      it('creates a proxy', () => {
         mockFs.readFile = jest.fn((path, cb) => {
           return cb(null, JSON.stringify({
             keyManagerProxyURL: 'https://km-proxy-url/',
@@ -136,7 +136,7 @@ describe('SymConfigLoader', () => {
         });
       });
 
-      it('should create an authenticated proxy', () => {
+      it('creates an authenticated proxy', () => {
         mockFs.readFile = jest.fn((path, cb) => {
           return cb(null, JSON.stringify({
             keyManagerProxyURL: 'https://km-proxy-url/',
@@ -153,7 +153,7 @@ describe('SymConfigLoader', () => {
         });
       });
 
-      it('should encode special characters', () => {
+      it('encodes special characters', () => {
         mockFs.readFile = jest.fn((path, cb) => {
           return cb(null, JSON.stringify({
             keyManagerProxyURL: 'https://km-proxy-url/',
