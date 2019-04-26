@@ -1,0 +1,1031 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SymBotClient #acceptConnectionRequest handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "POST",
+      "path": "/pod/v1/connnection/accept",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #activateRoom handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "POST",
+      "path": "/pod/v1/room/abc123/setActive?active=true",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #addMemberToRoom handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "POST",
+      "path": "/pod/v1/room/abc123/membership/add",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #adminListEnterpriseStreamsV2 handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "post",
+      "path": "/pod/v2/admin/streams/list?skip=0&limit=100",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #createRoom handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "POST",
+      "path": "/pod/v3/room/create",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #createSignal handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "keyManagerToken": "key-manager-token",
+        "sessionToken": "session-token",
+      },
+      "host": "agent.example.com:443",
+      "hostname": "agent.example.com",
+      "method": "POST",
+      "path": "/agent/v1/signals/create",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #deactivateRoom handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "POST",
+      "path": "/pod/v1/room/abc123/setActive?active=false",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #deleteSignal handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "keyManagerToken": "key-manager-token",
+        "sessionToken": "session-token",
+      },
+      "host": "agent.example.com:443",
+      "hostname": "agent.example.com",
+      "method": "POST",
+      "path": "/agent/v1/signals/abc123/delete",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #demoteUserFromOwner handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "POST",
+      "path": "/pod/v1/room/abc123/membership/demoteOwner",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getAcceptedConnections handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "GET",
+      "path": "/pod/v1/connnection/list?status=accepted",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getAllConnections handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "GET",
+      "path": "/pod/v1/connnection/list?status=all",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getConnectionRequestStatus handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "GET",
+      "path": "/pod/v1/connnection/user/abc123/info",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getConnections handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "GET",
+      "path": "/pod/v1/connnection/list?status=all?userIds=abc123",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getInboundPendingConnections handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "GET",
+      "path": "/pod/v1/connnection/list?status=pending_incoming",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getMessage handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "keyManagerToken": "key-manager-token",
+        "sessionToken": "session-token",
+      },
+      "host": "agent.example.com:443",
+      "hostname": "agent.example.com",
+      "method": "get",
+      "path": "/agent/v1/message/abc123",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getPendingConnections handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "GET",
+      "path": "/pod/v1/connnection/list?status=pending_outgoing",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getRejectedConnections handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "GET",
+      "path": "/pod/v1/connnection/list?status=rejected",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getRoomInfo handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "GET",
+      "path": "/pod/v3/room/abc123/info",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getRoomMembers handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "GET",
+      "path": "/pod/v2/room/abc123/membership/list",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getSignal handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "keyManagerToken": "key-manager-token",
+        "sessionToken": "session-token",
+      },
+      "host": "agent.example.com:443",
+      "hostname": "agent.example.com",
+      "method": "GET",
+      "path": "/agent/v1/signals/abc123/get",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getSignalSubscribers handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "keyManagerToken": "key-manager-token",
+        "sessionToken": "session-token",
+      },
+      "host": "agent.example.com:443",
+      "hostname": "agent.example.com",
+      "method": "GET",
+      "path": "/agent/v1/signals/abc123/subscribers?skip=0&limit=50",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getUser handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "get",
+      "path": "/pod/v2/admin/user/abc123",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getUserFromEmail handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "get",
+      "path": "/pod/v2/user?email=example@example.com&local=true",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getUserFromUsername handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "get",
+      "path": "/pod/v2/user?username=user123",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getUserIMStreamId handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "POST",
+      "path": "/pod/v1/im/create",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getUserPresence handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "GET",
+      "path": "/pod/v3/user/abc123/presence?local=false",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getUserStreams handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "POST",
+      "path": "/pod/v1/streams/list?skip=0&limit=100",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getUsersFromEmailList handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "get",
+      "path": "/pod/v3/users?email=example@example.com,example@example.org&local=true",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #getUsersFromIdList handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "get",
+      "path": "/pod/v3/users?uid=1234&local=true",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #importMessages handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "keyManagerToken": "key-manager-token",
+        "sessionToken": "session-token",
+      },
+      "host": "agent.example.com:443",
+      "hostname": "agent.example.com",
+      "method": "post",
+      "path": "/agent/v4/message/import",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #listSignals handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "keyManagerToken": "key-manager-token",
+        "sessionToken": "session-token",
+      },
+      "host": "agent.example.com:443",
+      "hostname": "agent.example.com",
+      "method": "GET",
+      "path": "/agent/v1/signals/list?skip=0&limit=50",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #listUsers handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "get",
+      "path": "/pod/v2/admin/user/list?skip=0&limit=1000",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #oboGetAllConnections handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "get",
+      "path": "/pod/v1/connnection/list?status=all",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #oboGetConnection handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "get",
+      "path": "/pod/v1/connnection/user/abc123/info",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #oboGetUserIMStreamId handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "post",
+      "path": "/pod/v1/admin/im/create",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #promoteUserToOwner handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "POST",
+      "path": "/pod/v1/room/abc123/membership/promoteOwner",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #registerInterestExtUser handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "POST",
+      "path": "/pod/v1/user/presence/register",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #rejectConnectionRequest handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "POST",
+      "path": "/pod/v1/connnection/reject",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #removeConnection handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "POST",
+      "path": "/pod/v1/connnection/user/abc123/remove",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #removeMemberFromRoom handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "POST",
+      "path": "/pod/v1/room/abc123/membership/remove",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #searchRooms handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "POST",
+      "path": "/pod/v3/room/search?skip=0&limit=100",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #searchUsers handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "post",
+      "path": "/pod/v1/user/search?local=true&skip=10&limit=100",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #sendConnectionRequest handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "POST",
+      "path": "/pod/v1/connnection/create",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #setPresence handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "POST",
+      "path": "/pod/v2/user/presence",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #streamMembers handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "get",
+      "path": "/pod/v1/admin/stream/abc123/membership/list?skip=0&limit=1000",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #subscribeSignal handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "keyManagerToken": "key-manager-token",
+        "sessionToken": "session-token",
+      },
+      "host": "agent.example.com:443",
+      "hostname": "agent.example.com",
+      "method": "POST",
+      "path": "/agent/v1/signals/abc123/subscribe?pushed=false",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #suppressMessage handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "post",
+      "path": "/pod/v1/admin/messagesuppression/abc123/suppress",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #unsubscribeSignal handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "keyManagerToken": "key-manager-token",
+        "sessionToken": "session-token",
+      },
+      "host": "agent.example.com:443",
+      "hostname": "agent.example.com",
+      "method": "POST",
+      "path": "/agent/v1/signals/abc123/unsubscribe",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #updateRoom handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "sessionToken": "session-token",
+      },
+      "host": "pod.example.com:443",
+      "hostname": "pod.example.com",
+      "method": "POST",
+      "path": "/pod/v3/room/abc123/update",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;
+
+exports[`SymBotClient #updateSignal handles success 1`] = `
+Array [
+  Array [
+    Object {
+      "agent": undefined,
+      "headers": Object {
+        "Content-Type": "application/json",
+        "keyManagerToken": "key-manager-token",
+        "sessionToken": "session-token",
+      },
+      "host": "agent.example.com:443",
+      "hostname": "agent.example.com",
+      "method": "POST",
+      "path": "/agent/v1/signals/abc123/update",
+      "port": 443,
+      "proto": "https",
+    },
+    [Function],
+  ],
+]
+`;

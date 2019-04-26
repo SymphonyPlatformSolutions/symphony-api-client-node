@@ -7,9 +7,7 @@ const mockHttps = require('https');
 
 describe('SymBotAuth', () => {
   beforeEach(() => {
-    mockFs.readFileSync = jest.fn((path, encoding) => {
-      return "Contents of " + path;
-    });
+    mockFs.readFileSync = jest.fn((path) => "Contents of " + path);
 
     mockHttps.request = jest.fn(() => ({
       end: jest.fn(),
