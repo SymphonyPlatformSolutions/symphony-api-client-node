@@ -12,6 +12,7 @@ describe('SymBotAuth', () => {
     mockHttps.request = jest.fn(() => ({
       end: jest.fn(),
       on: jest.fn(),
+      setTimeout: jest.fn()
     }));
   });
 
