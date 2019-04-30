@@ -8,7 +8,7 @@ jest.mock('../../lib/SymBotAuth', () => ({
 }))
 
 const nock = require('nock')
-const Datafeed = require('../../lib/DatafeedEventsService')
+const DatafeedEventsService = require('../../lib/DatafeedEventsService')
 
 const mockBody = [
   {
@@ -31,8 +31,16 @@ const parsedMessages = [
   },
 ]
 
+function mockCreate() {
+  return nock('https://agent.example.com').post(`/agent/v4/datafeed/create`)
+}
+
+function mockRead(id) {
+  return nock('https://agent.example.com').get(`/agent/v4/datafeed/${id}/read`)
+}
+
 function initFeed(messageHandler, id, errorHandler) {
-  const feed = new Datafeed()
+  const feed = new DatafeedEventsService()
   feed.on('message', messageHandler)
   feed.on('error', errorHandler || (err => console.error('Unhandled feed error', err)))
   feed.start(id)
@@ -40,130 +48,136 @@ function initFeed(messageHandler, id, errorHandler) {
 }
 
 function stopFeed(feed) {
+  // suppress stop bot log message
   console.log.mockImplementationOnce(() => {})
   feed.stop()
 }
 
-function mockCalled(mock) {
+function mockHasBeenCalled(mock) {
   return new Promise(resolve => {
     mock.mockImplementationOnce(resolve)
   })
 }
 
 describe('DatafeedEventsService', () => {
+  const id = 'abc123'
+
   beforeAll(() => {
-    jest.spyOn(console, 'log')
+    jest.spyOn(process, 'on')
+    jest.spyOn(process, 'exit').mockImplementation(() => {})
   })
 
   beforeEach(() => {
     jest.clearAllMocks()
+    jest.spyOn(console, 'log')
+    jest.spyOn(console, 'warn')
   })
 
-  afterEach(() => nock.isDone())
+  afterEach(() => {
+    nock.isDone()
+    console.log.mockRestore()
+    console.warn.mockRestore()
+  })
 
   it('recreates existing datafeed', async () => {
-    const id = 'abc123'
-    nock('https://agent.example.com')
-      .get(`/agent/v4/datafeed/${id}/read`)
-      .reply(200, mockBody)
+    mockRead(id).reply(200, mockBody)
 
     const messageHandler = jest.fn()
     const feed = initFeed(messageHandler, id)
     stopFeed(feed)
-    await mockCalled(messageHandler)
+    await mockHasBeenCalled(messageHandler)
 
     expect(messageHandler).toHaveBeenCalledWith(parsedMessages)
   })
 
   it('creates new datafeed', async () => {
-    const id = 'abc123'
-    nock('https://agent.example.com')
-      .post(`/agent/v4/datafeed/create`)
-      .reply(200, { id })
-    nock('https://agent.example.com')
-      .get(`/agent/v4/datafeed/${id}/read`)
-      .reply(200, mockBody)
+    mockCreate().reply(200, { id })
+    mockRead(id).reply(200, mockBody)
 
     const messageHandler = jest.fn()
     const feed = initFeed(messageHandler)
     stopFeed(feed)
-    await mockCalled(messageHandler)
+    await mockHasBeenCalled(messageHandler)
 
     expect(messageHandler).toHaveBeenCalledWith(parsedMessages)
   })
 
   it('continues reading when feed responds or times out', async () => {
-    const id = 'abc123'
-    nock('https://agent.example.com')
-      .get(`/agent/v4/datafeed/${id}/read`)
+    mockRead(id)
       .times(2)
       .reply(204)
-    nock('https://agent.example.com')
-      .get(`/agent/v4/datafeed/${id}/read`)
+    mockRead(id)
       .times(2)
       .reply(200, mockBody)
 
     const messageHandler = jest.fn()
     const feed = initFeed(messageHandler, id)
-    await mockCalled(messageHandler)
+    await mockHasBeenCalled(messageHandler)
     stopFeed(feed)
-    await mockCalled(messageHandler)
+    await mockHasBeenCalled(messageHandler)
 
     expect(messageHandler).toHaveBeenCalledTimes(2)
   })
 
   it('emits on create connection', async () => {
-    const id = 'abc123'
-    nock('https://agent.example.com')
-      .get(`/agent/v4/datafeed/create`)
-      .replyWithError('Network error')
+    mockCreate().replyWithError('Network error')
 
     const messageHandler = jest.fn()
     const errorHandler = jest.fn()
     initFeed(messageHandler, null, errorHandler)
-    await mockCalled(errorHandler)
+    await mockHasBeenCalled(errorHandler)
 
     expect(messageHandler).not.toHaveBeenCalled()
     expect(errorHandler).toHaveBeenCalledWith({ status: 'error' })
   })
 
   it('emits on read connection error', async () => {
-    const id = 'abc123'
-    nock('https://agent.example.com')
-      .get(`/agent/v4/datafeed/${id}/read`)
-      .replyWithError('Network error')
+    mockRead(id).replyWithError('Network error')
 
     const messageHandler = jest.fn()
     const errorHandler = jest.fn()
     initFeed(messageHandler, id, errorHandler)
-    await mockCalled(errorHandler)
+    await mockHasBeenCalled(errorHandler)
 
     expect(messageHandler).not.toHaveBeenCalled()
     expect(errorHandler).toHaveBeenCalledWith({ status: 'error' })
   })
 
   it('reconnects on read HTTP 400 error, emits on 500', async () => {
-    const id = 'abc123'
-    nock('https://agent.example.com')
-      .get(`/agent/v4/datafeed/${id}/read`)
-      .reply(400)
-    nock('https://agent.example.com')
-      .post(`/agent/v4/datafeed/create`)
-      .reply(200, { id })
-    nock('https://agent.example.com')
-      .get(`/agent/v4/datafeed/${id}/read`)
-      .reply(200, mockBody)
-    nock('https://agent.example.com')
-      .get(`/agent/v4/datafeed/${id}/read`)
-      .reply(500)
+    mockRead(id).reply(400)
+    mockCreate().reply(200, { id })
+    mockRead(id).reply(200, mockBody)
+    mockRead(id).reply(500)
 
     const messageHandler = jest.fn()
     const errorHandler = jest.fn()
     initFeed(messageHandler, id, errorHandler)
-    await mockCalled(messageHandler)
-    await mockCalled(errorHandler)
+    await mockHasBeenCalled(messageHandler)
+    await mockHasBeenCalled(errorHandler)
 
     expect(errorHandler).toHaveBeenCalledWith({ status: 'error', statusCode: 500 })
     expect(messageHandler).toHaveBeenCalledWith(parsedMessages)
+  })
+
+  it('triggers shutdown procedure on SIGINT', async () => {
+    mockRead(id).reply(200, mockBody)
+
+    const messageHandler = jest.fn()
+    process.env
+    const feed = initFeed(messageHandler, id)
+    stopFeed(feed)
+    feed.registerShutdownHooks()
+    console.log.mockImplementation(jest.fn())
+
+    process.emit('SIGINT', {}, 0)
+    await mockHasBeenCalled(process.exit)
+  })
+
+  it('warns if no handlers registered', async () => {
+    console.warn.mockImplementation(jest.fn())
+    const feed = new DatafeedEventsService()
+    feed.start()
+
+    expect(console.warn).toHaveBeenCalledTimes(2)
   })
 })

@@ -170,8 +170,12 @@ describe('SymBotClient', () => {
       const messageHandler = jest.fn()
       const errorHandler = jest.fn()
       const feed = SymBotClient.getDatafeedEventsService(messageHandler, errorHandler, feedId)
+
+      // call bound handler function
+      feed.on.mock.calls[0][1]('hello')
+      expect(messageHandler).toHaveBeenCalledWith('MESSAGE_RECEIVED', 'hello')
+
       expect(feed.start).toHaveBeenCalledWith(feedId)
-      expect(feed.on).toHaveBeenCalledWith('message', messageHandler)
       expect(feed.on).toHaveBeenCalledWith('error', errorHandler)
     })
   })
@@ -179,7 +183,7 @@ describe('SymBotClient', () => {
   describe('#stopDatafeedEventsService', () => {
     it('stops instance', () => {
       jest.spyOn(console, 'warn').mockImplementationOnce(() => {})
-      const feed = SymBotClient.getDatafeedEventsService()
+      const feed = SymBotClient.getDatafeedEventsService(jest.fn())
       SymBotClient.stopDatafeedEventsService()
       expect(feed.stop).toHaveBeenCalled()
       expect(console.warn).toHaveBeenCalled()
