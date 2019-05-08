@@ -98,10 +98,13 @@ feed.on('created', newFeedId => /* save new feed ID to storage */);
 
 There is a known issue that can cause messages to be lost when stopping and resuming a datafeed.
 To avoid this, the datafeed service must hook into Node's exit events and prevent the process
-from exiting until the data feed has closed cleanly (up to 30 seconds). This happens automatically
-if the `NODE_ENV` is 'production' and a datafeed 'created' listener has been registered. In other 
-cases the behaviour can be opted into by calling `registerShutdownHooks()` on the feed instance.
+from exiting until the data feed has closed cleanly (up to 30 seconds). This is done automatically
+if the `NODE_ENV` environment variable is set to 'production' *and* a datafeed 'created' listener 
+has been registered (see above). In other cases the behaviour can be opted into by calling 
+`registerShutdownHooks()` on the feed instance.
 
+See [Express Best Practices](https://expressjs.com/en/advanced/best-practice-performance.html#set-node_env-to-production)
+for examples of how to set environment variables.
 
 # Release Notes
 
