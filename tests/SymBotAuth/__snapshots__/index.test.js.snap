@@ -5,6 +5,7 @@ Array [
   Array [
     Object {
       "agent": "agent",
+      "headers": Object {},
       "hostname": "https://key.example.com",
       "method": "POST",
       "passphrase": "Passphrase",
@@ -22,6 +23,7 @@ Array [
   Array [
     Object {
       "agent": "agent",
+      "headers": Object {},
       "hostname": "https://session.example.com",
       "method": "POST",
       "passphrase": "Passphrase",
