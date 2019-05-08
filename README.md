@@ -85,8 +85,8 @@ Create a config.json file in your project.  Below is a sample configuration whic
 
 ## Datafeed resuming
 
-Datafeeds buffer events on the agent up to a small limit. This allows bots to be restarted without missing any events, 
-provided the datafeed ID is persisted and supplied when reconnecting. 
+Datafeeds buffer events on the agent up to a small limit. This allows bots to be restarted without missing any events,
+provided the datafeed ID is persisted and supplied when reconnecting.
 
 ```javascript
 const feedId = /* load feed ID from storage */;
@@ -99,14 +99,25 @@ feed.on('created', newFeedId => /* save new feed ID to storage */);
 There is a known issue that can cause messages to be lost when stopping and resuming a datafeed.
 To avoid this, the datafeed service must hook into Node's exit events and prevent the process
 from exiting until the data feed has closed cleanly (up to 30 seconds). This is done automatically
-if the `NODE_ENV` environment variable is set to 'production' *and* a datafeed 'created' listener 
-has been registered (see above). In other cases the behaviour can be opted into by calling 
+if the `NODE_ENV` environment variable is set to 'production' *and* a datafeed 'created' listener
+has been registered (see above). In other cases the behaviour can be opted into by calling
 `registerShutdownHooks()` on the feed instance.
 
 See [Express Best Practices](https://expressjs.com/en/advanced/best-practice-performance.html#set-node_env-to-production)
 for examples of how to set environment variables.
 
 # Release Notes
+
+## 1.0.4
+- Introduction of Request client library to handle API requests.
+- Fix malformed proxyURL when using username and password authentication.
+- Add support for Form Data requests.
+- Rewrite of DatafeedEventsService. Allowing for better management of datafeeds including,
+ - restarting an existing datafeed
+ - reporting the ID of a new datafeed
+ - reporting when the datafeed has errored
+ - reporting when the datafeed has stopped cleanly
+ - preventing the node process from exiting until datafeed has stopped cleanly
 
 ## 1.0.3
 - Fix to handle support for PKCS12 certificate files
