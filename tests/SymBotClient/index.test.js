@@ -165,21 +165,7 @@ describe('SymBotClient', () => {
   })
 
   describe('#getDatafeedEventsService', () => {
-    it('creates and sets up instance', () => {
-      const feedId = 'abc123'
-      const messageHandler = jest.fn()
-      const errorHandler = jest.fn()
-      const feed = SymBotClient.getDatafeedEventsService(messageHandler, errorHandler, feedId)
-
-      // call bound handler function
-      feed.on.mock.calls[0][1]('hello')
-      expect(messageHandler).toHaveBeenCalledWith('MESSAGE_RECEIVED', 'hello')
-
-      expect(feed.start).toHaveBeenCalledWith(feedId)
-      expect(feed.on).toHaveBeenCalledWith('error', errorHandler)
-    })
-
-    it('allows errorHandler and feedId to be omitted', () => {
+    it('supports old function signature', () => {
       const messageHandler = jest.fn()
       const feed = SymBotClient.getDatafeedEventsService(messageHandler)
 
@@ -188,7 +174,26 @@ describe('SymBotClient', () => {
       expect(messageHandler).toHaveBeenCalledWith('MESSAGE_RECEIVED', 'hello')
 
       expect(feed.start).toHaveBeenCalledWith(undefined)
-      expect(feed.on).not.toHaveBeenCalledWith(expect.any(String), undefined)
+    })
+
+    it('supports new function signature', () => {
+      const feedId = 'abc123'
+      const onMessage = jest.fn()
+      const onError = jest.fn()
+      const feed = SymBotClient.getDatafeedEventsService({onMessage, onError, feedId})
+
+      expect(feed.start).toHaveBeenCalledWith(feedId)
+      expect(feed.on).toHaveBeenCalledWith('message', onMessage)
+      expect(feed.on).toHaveBeenCalledWith('error', onError)
+    })
+
+    it('allows errorHandler and feedId to be omitted', () => {
+      const onMessage = jest.fn()
+      const feed = SymBotClient.getDatafeedEventsService({onMessage})
+
+      expect(feed.start).toHaveBeenCalledWith(undefined)
+      expect(feed.on).toHaveBeenCalledWith('message', onMessage)
+      expect(feed.on).toHaveBeenCalledTimes(1)
     })
   })
 

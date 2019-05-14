@@ -3,25 +3,27 @@ Symphony API Client for NodeJS
 
 ## Installation
 
-``npm install --save symphony-api-client-node``
+`npm install --save symphony-api-client-node`
 
 ## Usage
 
 ```javascript
-const Symphony = require('symphony-api-client-node');
+const Symphony = require('symphony-api-client-node')
 
-const messageHandler = (eventName, messages) => {
+const onMessage = messages => {
   messages.forEach(message => {
-    console.log('The BOT heard "' + message.messageText +'" from ' + message.initiator.user.displayName);
+    console.log(
+      'The BOT heard "' + message.messageText + '" from ' + message.initiator.user.displayName
+    )
   })
 }
 
-const errorHandler = error => {
+const onError = error => {
   console.error('Error reading data feed', error)
 }
 
 Symphony.initBot(__dirname + '/config.json').then(() => {
-  Symphony.getDatafeedEventsService(messageHandler, errorHandler);
+  Symphony.getDatafeedEventsService({ onMessage, onError })
 })
 ```
 
@@ -30,7 +32,6 @@ Symphony.initBot(__dirname + '/config.json').then(() => {
 The `config.json` file is described on the [Configuration page](https://symphony-developers.symphony.com/docs/configuration-1) of the Symphony Developer Guide.
 
 Create a config.json file in your project.  Below is a sample configuration which includes the properties that can be configured:
-
 
 ```json5
 {
@@ -89,17 +90,29 @@ Datafeeds buffer events on the agent up to a small limit. This allows bots to be
 provided the datafeed ID is persisted and supplied when reconnecting.
 
 ```javascript
-const feedId = /* load feed ID from storage */;
-const feed = Symphony.getDatafeedEventsService(messageHandler, errorHandler, feedId);
-feed.on('created', newFeedId => /* save new feed ID to storage */);
- ```
+const fs = require('fs')
+const localFile = '/path/to/writable/file' // <- change this
+
+const loadId = () => fs.readFileSync(localFile, { encoding: 'utf-8', flag: 'a+' })
+const saveId = id => fs.writeFile(localFile, id, err => err && console.error(err))
+
+const feed = Symphony.getDatafeedEventsService({
+  onMessage,
+  onError,
+  onCreated: saveId,
+  feedId: loadId(),
+})
+```
+
+This simple example assumes that the file system is persisted across restarts which is not always the case
+(e.g. Docker containers). It is recommended to persist the datafeed ID to a database instead if available.
 
 ### Shutting down a bot
 
 There is a known issue that can cause messages to be lost when stopping and resuming a datafeed.
 To avoid this, the datafeed service must hook into Node's exit events and prevent the process
 from exiting until the data feed has closed cleanly (up to 30 seconds). This is done automatically
-if the `NODE_ENV` environment variable is set to 'production' *and* a datafeed 'created' listener
+if the `NODE_ENV` environment variable is set to 'production' _and_ a datafeed 'created' listener
 has been registered (see above). In other cases the behaviour can be opted into by calling
 `registerShutdownHooks()` on the feed instance.
 
@@ -110,6 +123,8 @@ for examples of how to set environment variables.
 
 ## 1.0.4
 - Fix malformed proxyURL when using username and password authentication.
+- Enhancement for resuming an existing datafeed. If upgrading to the new `getDatafeedEventsService` method signature, 
+  note that the new `onMessage` handler is passed a single `messages` parameter.
 - Rewrite of DatafeedEventsService. Allowing for better management of datafeeds including,
  - restarting an existing datafeed
  - reporting the ID of a new datafeed

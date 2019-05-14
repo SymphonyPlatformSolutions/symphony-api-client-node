@@ -163,7 +163,6 @@ describe('DatafeedEventsService', () => {
     mockRead(id).reply(200, mockBody)
 
     const messageHandler = jest.fn()
-    process.env
     const feed = initFeed(messageHandler, id)
     stopFeed(feed)
     feed.registerShutdownHooks()
