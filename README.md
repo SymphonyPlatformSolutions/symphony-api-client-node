@@ -10,17 +10,23 @@ Symphony API Client for NodeJS
 ```javascript
 const Symphony = require('symphony-api-client-node');
 
-const botHearsSomething = ( event, messages ) => {
-  messages.forEach( (message, index) => {
-    console.log( 'The BOT heard "' + message.messageText +'" from ' + message.initiator.user.displayName );
+const messageHandler = (eventName, messages) => {
+  messages.forEach(message => {
+    console.log('The BOT heard "' + message.messageText +'" from ' + message.initiator.user.displayName);
   })
 }
 
-Symphony.initBot(__dirname + '/config.json').then( (symAuth) => {
-  Symphony.getDatafeedEventsService( botHearsSomething );
+const errorHandler = error => {
+  console.error('Error reading data feed', error)
+}
+
+Symphony.initBot(__dirname + '/config.json').then(() => {
+  Symphony.getDatafeedEventsService(messageHandler, errorHandler);
 })
 ```
+
 ## Configuration
+
 The `config.json` file is described on the [Configuration page](https://symphony-developers.symphony.com/docs/configuration-1) of the Symphony Developer Guide.
 
 Create a config.json file in your project.  Below is a sample configuration which includes the properties that can be configured:
@@ -77,7 +83,39 @@ Create a config.json file in your project.  Below is a sample configuration whic
 }
 ```
 
+## Datafeed resuming
+
+Datafeeds buffer events on the agent up to a small limit. This allows bots to be restarted without missing any events,
+provided the datafeed ID is persisted and supplied when reconnecting.
+
+```javascript
+const feedId = /* load feed ID from storage */;
+const feed = Symphony.getDatafeedEventsService(messageHandler, errorHandler, feedId);
+feed.on('created', newFeedId => /* save new feed ID to storage */);
+ ```
+
+### Shutting down a bot
+
+There is a known issue that can cause messages to be lost when stopping and resuming a datafeed.
+To avoid this, the datafeed service must hook into Node's exit events and prevent the process
+from exiting until the data feed has closed cleanly (up to 30 seconds). This is done automatically
+if the `NODE_ENV` environment variable is set to 'production' *and* a datafeed 'created' listener
+has been registered (see above). In other cases the behaviour can be opted into by calling
+`registerShutdownHooks()` on the feed instance.
+
+See [Express Best Practices](https://expressjs.com/en/advanced/best-practice-performance.html#set-node_env-to-production)
+for examples of how to set environment variables.
+
 # Release Notes
+
+## 1.0.4
+- Fix malformed proxyURL when using username and password authentication.
+- Rewrite of DatafeedEventsService. Allowing for better management of datafeeds including,
+ - restarting an existing datafeed
+ - reporting the ID of a new datafeed
+ - reporting when the datafeed has errored
+ - reporting when the datafeed has stopped cleanly
+ - preventing the node process from exiting until datafeed has stopped cleanly
 
 ## 1.0.3
 - Fix to handle support for PKCS12 certificate files
