@@ -121,6 +121,10 @@ for examples of how to set environment variables.
 
 # Release Notes
 
+## next
+- Enhancement for resuming an existing datafeed. If upgrading to the new `getDatafeedEventsService` method signature, 
+  note that the new `onMessage` handler is passed a single `messages` parameter.
+
 ## 1.0.3
 - Fix to handle support for PKCS12 certificate files
 - Enhancement for Proxy Support. Allow configuring pod, agent and key manager proxies independently.
