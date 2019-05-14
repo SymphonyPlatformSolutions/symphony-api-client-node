@@ -109,9 +109,7 @@ for examples of how to set environment variables.
 # Release Notes
 
 ## 1.0.4
-- Introduction of Request client library to handle API requests.
 - Fix malformed proxyURL when using username and password authentication.
-- Add support for Form Data requests.
 - Rewrite of DatafeedEventsService. Allowing for better management of datafeeds including,
  - restarting an existing datafeed
  - reporting the ID of a new datafeed
