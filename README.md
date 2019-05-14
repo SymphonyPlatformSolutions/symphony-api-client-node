@@ -121,9 +121,16 @@ for examples of how to set environment variables.
 
 # Release Notes
 
-## next
+## 1.0.4
+- Fix malformed proxyURL when using username and password authentication.
 - Enhancement for resuming an existing datafeed. If upgrading to the new `getDatafeedEventsService` method signature, 
   note that the new `onMessage` handler is passed a single `messages` parameter.
+- Rewrite of DatafeedEventsService. Allowing for better management of datafeeds including,
+ - restarting an existing datafeed
+ - reporting the ID of a new datafeed
+ - reporting when the datafeed has errored
+ - reporting when the datafeed has stopped cleanly
+ - preventing the node process from exiting until datafeed has stopped cleanly
 
 ## 1.0.3
 - Fix to handle support for PKCS12 certificate files
