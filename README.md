@@ -13,7 +13,7 @@ const Symphony = require('symphony-api-client-node')
 const onMessage = messages => {
   messages.forEach(message => {
     console.log(
-      'The BOT heard "' + message.messageText + '" from ' + message.initiator.user.displayName
+      'The BOT heard "' + message.messageText + '" from ' + message.user.displayName
     )
   })
 }
@@ -119,11 +119,36 @@ has been registered (see above). In other cases the behaviour can be opted into 
 See [Express Best Practices](https://expressjs.com/en/advanced/best-practice-performance.html#set-node_env-to-production)
 for examples of how to set environment variables.
 
+## Datafeed event types
+
+As well as messages, the datafeed reports a number of other events. See the
+[documentation for real time events](https://developers.symphony.com/restapi/docs/real-time-events).
+These can be accessed by adding corresponding event listeners to the feed service. For example:
+
+```javascript
+Symphony.getDatafeedEventsService({
+    onMessage,
+    onError,
+    onUserjoinedroom: events => {
+      for (let event of events) {
+        const initiator = event.initiator.user.displayName
+        const user = event.payload.userJoinedRoom.affectedUser.displayName
+        const room = event.payload.userJoinedRoom.stream.roomName
+        console.log(`${initiator} added ${user} to ${room}`)
+      }
+    },
+  })
+```
+
 # Release Notes
+
+## 1.0.5
+- Extended event service to report on all Symphony Datafeed events
+- Upgrade of Jest and update to Node engine requirements
 
 ## 1.0.4
 - Fix malformed proxyURL when using username and password authentication.
-- Enhancement for resuming an existing datafeed. If upgrading to the new `getDatafeedEventsService` method signature, 
+- Enhancement for resuming an existing datafeed. If upgrading to the new `getDatafeedEventsService` method signature,
   note that the new `onMessage` handler is passed a single `messages` parameter.
 - Rewrite of DatafeedEventsService. Allowing for better management of datafeeds including,
  - restarting an existing datafeed

@@ -22,6 +22,16 @@ const mockBody = [
       },
     },
   },
+  {
+    type: 'USERJOINEDROOM',
+    initiator: { user: { userId: 234 } },
+    payload: {
+      userJoinedRoom: {
+        stream: { streamId: 'abc123', streamType: 'ROOM' },
+        affectedUser: { userId: 123 },
+      },
+    },
+  },
 ]
 
 const parsedMessages = [
@@ -60,7 +70,7 @@ function mockHasBeenCalled(mock) {
 }
 
 describe('DatafeedEventsService', () => {
-  const id = 'abc123'
+  const id = 'feed123'
 
   beforeAll(() => {
     jest.spyOn(process, 'on')
@@ -119,16 +129,32 @@ describe('DatafeedEventsService', () => {
     expect(messageHandler).toHaveBeenCalledTimes(2)
   })
 
-  it('emits on create connection', async () => {
-    mockCreate().replyWithError('Network error')
+  it('emits on user added', async () => {
+    mockRead(id).reply(200, mockBody)
 
     const messageHandler = jest.fn()
-    const errorHandler = jest.fn()
-    initFeed(messageHandler, null, errorHandler)
-    await mockHasBeenCalled(errorHandler)
+    const userJoinedHandler = jest.fn()
+    const feed = initFeed(messageHandler, id)
+    feed.on('userjoinedroom', userJoinedHandler)
+    stopFeed(feed)
+    await mockHasBeenCalled(userJoinedHandler)
 
-    expect(messageHandler).not.toHaveBeenCalled()
-    expect(errorHandler).toHaveBeenCalledWith({ status: 'error' })
+    expect(messageHandler).toHaveBeenCalledWith(parsedMessages)
+    expect(userJoinedHandler).toHaveBeenCalledWith([mockBody[1]])
+  })
+
+  it('emits on create connection', async () => {
+    mockCreate().reply(200, { id })
+    mockRead(id).reply(204)
+
+    const messageHandler = jest.fn()
+    const createdHandler = jest.fn()
+    const feed = initFeed(messageHandler)
+    feed.on('created', createdHandler)
+    stopFeed(feed)
+    await mockHasBeenCalled(createdHandler)
+
+    expect(createdHandler).toHaveBeenCalledWith(id)
   })
 
   it('emits on read connection error', async () => {
