@@ -157,6 +157,22 @@ describe('DatafeedEventsService', () => {
     expect(createdHandler).toHaveBeenCalledWith(id)
   })
 
+  it('emits on stopping and stopped events', async () => {
+    mockCreate().reply(200, { id })
+    mockRead(id).reply(204)
+
+    const messageHandler = jest.fn()
+    const stoppingHandler = jest.fn()
+    const stoppedHandler = jest.fn()
+    const feed = initFeed(messageHandler)
+    feed.on('stopping', stoppingHandler)
+    feed.on('stopped', stoppedHandler)
+    stopFeed(feed);
+    expect(stoppingHandler).toHaveBeenCalled()
+
+    await mockHasBeenCalled(stoppedHandler)
+  })
+
   it('emits on read connection error', async () => {
     mockRead(id).replyWithError('Network error')
 
@@ -190,12 +206,47 @@ describe('DatafeedEventsService', () => {
 
     const messageHandler = jest.fn()
     const feed = initFeed(messageHandler, id)
-    stopFeed(feed)
     feed.registerShutdownHooks()
     console.log.mockImplementation(jest.fn())
 
     process.emit('SIGINT', {}, 0)
     await mockHasBeenCalled(process.exit)
+  })
+
+  it('emits stopping and stopped on SIGINT', async () => {
+    mockRead(id).reply(200, mockBody)
+
+    const messageHandler = jest.fn()
+    const feed = initFeed(messageHandler, id)
+    feed.registerShutdownHooks()
+    console.log.mockImplementation(jest.fn())
+
+    const stoppedHandler = jest.fn()
+    feed.on('stopped', stoppedHandler)
+    const stoppingHandler = jest.fn()
+    feed.on('stopping', stoppingHandler)
+
+    process.emit('SIGINT', {}, 0)
+    await mockHasBeenCalled(process.exit)
+
+    expect(stoppingHandler).toHaveBeenCalled()
+    expect(stoppedHandler).toHaveBeenCalled()
+  })
+
+  it('when shutdown event handler attached emits a shutdown event and does not exit on SIGINT', async () => {
+    mockRead(id).reply(200, mockBody)
+
+    const messageHandler = jest.fn()
+    const feed = initFeed(messageHandler, id)
+    feed.registerShutdownHooks()
+    console.log.mockImplementation(jest.fn())
+
+    const shutdownHandler = jest.fn()
+    feed.on('shutdown', shutdownHandler)
+
+    process.emit('SIGINT', {}, 0)
+    await mockHasBeenCalled(shutdownHandler)
+    expect(process.exit).not.toHaveBeenCalled()
   })
 
   it('warns if no handlers registered', async () => {
