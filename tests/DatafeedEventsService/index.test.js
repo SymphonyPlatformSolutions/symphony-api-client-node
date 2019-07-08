@@ -213,6 +213,20 @@ describe('DatafeedEventsService', () => {
     await mockHasBeenCalled(process.exit)
   })
 
+  it('only triggers shutdown procedure once', async () => {
+    mockRead(id).reply(200, mockBody)
+
+    const messageHandler = jest.fn()
+    const feed = initFeed(messageHandler, id)
+    feed.registerShutdownHooks()
+    console.log.mockImplementation(jest.fn())
+
+    process.emit('SIGINT', {}, 0)
+    process.emit('SIGINT', {}, 0)
+    await mockHasBeenCalled(process.exit)
+    expect(process.exit).toHaveBeenCalledTimes(1)
+  })
+
   it('emits stopping and stopped on SIGINT', async () => {
     mockRead(id).reply(200, mockBody)
 
