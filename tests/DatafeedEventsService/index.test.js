@@ -1,5 +1,9 @@
 jest.mock('../../lib/SymConfigLoader', () => ({
-  SymConfig: { agentHost: 'agent.example.com' },
+  SymConfig: {
+    agentHost: 'agent.example.com',
+    getAgentHost: async () => 'agent.example.com',
+    rotateAgent: async () => { }
+  },
 }))
 jest.mock('../../lib/SymBotAuth', () => ({
   sessionAuthToken: 'session-token',
@@ -59,7 +63,7 @@ function initFeed(messageHandler, id, errorHandler) {
 
 function stopFeed(feed) {
   // suppress stop bot log message
-  console.log.mockImplementationOnce(() => {})
+  console.log.mockImplementationOnce(() => { })
   feed.stop()
 }
 
@@ -74,7 +78,7 @@ describe('DatafeedEventsService', () => {
 
   beforeAll(() => {
     jest.spyOn(process, 'on')
-    jest.spyOn(process, 'exit').mockImplementation(() => {})
+    jest.spyOn(process, 'exit').mockImplementation(() => { })
   })
 
   beforeEach(() => {
