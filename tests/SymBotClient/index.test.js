@@ -3,6 +3,8 @@ const mockConfig = {
   agentPort: 443,
   podHost: 'pod.example.com',
   podPort: 443,
+  getAgentHost: async () => 'agent.example.com',
+  rotateAgent: async () => { }
 }
 
 jest.mock('../../lib/SymConfigLoader', () => ({
@@ -143,7 +145,7 @@ describe('SymBotClient', () => {
 
     it('handles success', async () => {
       nock(`https://${host}`)
-        [verb](path)
+      [verb](path)
         .reply(200, '{"status":"OK"}')
 
       await expect(SymBotClient[methodName](...args)).resolves.toEqual({
@@ -155,7 +157,7 @@ describe('SymBotClient', () => {
 
     it('handles failure', () => {
       nock(`https://${host}`)
-        [verb](path)
+      [verb](path)
         .replyWithError('Oh no')
 
       return expect(SymBotClient[methodName](...args)).rejects.toEqual({
@@ -180,7 +182,7 @@ describe('SymBotClient', () => {
       const feedId = 'abc123'
       const onMessage = jest.fn()
       const onError = jest.fn()
-      const feed = SymBotClient.getDatafeedEventsService({onMessage, onError, feedId})
+      const feed = SymBotClient.getDatafeedEventsService({ onMessage, onError, feedId })
 
       expect(feed.start).toHaveBeenCalledWith(feedId)
       expect(feed.on).toHaveBeenCalledWith('message', onMessage)
@@ -189,7 +191,7 @@ describe('SymBotClient', () => {
 
     it('allows errorHandler and feedId to be omitted', () => {
       const onMessage = jest.fn()
-      const feed = SymBotClient.getDatafeedEventsService({onMessage})
+      const feed = SymBotClient.getDatafeedEventsService({ onMessage })
 
       expect(feed.start).toHaveBeenCalledWith(undefined)
       expect(feed.on).toHaveBeenCalledWith('message', onMessage)
@@ -199,7 +201,7 @@ describe('SymBotClient', () => {
 
   describe('#stopDatafeedEventsService', () => {
     it('stops instance', () => {
-      jest.spyOn(console, 'warn').mockImplementationOnce(() => {})
+      jest.spyOn(console, 'warn').mockImplementationOnce(() => { })
       const feed = SymBotClient.getDatafeedEventsService(jest.fn())
       SymBotClient.stopDatafeedEventsService()
       expect(feed.stop).toHaveBeenCalled()

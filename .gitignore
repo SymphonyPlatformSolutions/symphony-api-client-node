@@ -59,3 +59,5 @@ typings/
 
 config.json
 /certificates
+
+jest.config.js

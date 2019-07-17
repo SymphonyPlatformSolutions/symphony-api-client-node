@@ -81,6 +81,9 @@ Create a config.json file in your project.  Below is a sample configuration whic
     "keyManagerProxyURL": "http://localhost:3128",
     "keyManagerProxyUsername": "proxy-username",
     "keyManagerProxyPassword": "proxy-password",
+
+    // Optional: Self Signed Certificates - Set to 0 to not reject invalid or self-signed certificates
+    "nodeTlsRejectUnauthorized": 0
 }
 ```
 
@@ -140,7 +143,52 @@ Symphony.getDatafeedEventsService({
   })
 ```
 
+## Advanced Configuration for Load Balancing
+Create an additional configuration file to support load balancing.  There are 3 supported types:
+* Round-Robin
+* Random
+* External
+
+Round-robin and random load balancing are managed by this library based on the servers provided in the agentServers array.
+
+External load-balancing is managed by an external DNS, cloud provider or hardware-based solution. List only one load balancer frontend hostname in the agentServers array (subsequent server entries for the external method are ignored).
+
+**Note:** that this method requires all underlying agent servers to implement an additional `host.name` switch with the current server's FQDN in their `startup.sh` script.
+
+```bash
+exec java $JAVA_OPTS -Dhost.name=sym-agent-01.my-company.com
+```
+
+There is also support for sticky sessions, which should be true for any bot that requires the datafeed loop. Using non-sticky load-balanced configuration with a datafeed loop will result in unexpected results.
+```json5
+{
+    "loadBalancing": {
+        "method": "random", // or roundrobin or external
+        "stickySessions": true
+    },
+    "agentServers": [
+        "sym-agent-01.my-company.com",
+        "sym-agent-02.my-company.com",
+        "sym-agent-03.my-company.com"
+    ]
+}
+```
+
+### Loading advanced configuration
+To load the configuration
+
+```
+Symphony.initBot(__dirname + '/config.json', __dirname + '/lb-config.json')
+```
+
+
 # Release Notes
+
+## 1.0.6
+- Feature - Agent Server Load balancing
+- Improved handling for Self-Signed certificates using `nodeTlsRejectUnauthorized` variable
+- Fixed Error handling conflicts for `retryConnection`
+- Updated NPM package dependencies to include latest versions
 
 ## 1.0.5
 - Extended event service to report on all Symphony Datafeed events
