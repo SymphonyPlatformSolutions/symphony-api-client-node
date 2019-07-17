@@ -82,7 +82,7 @@ Create a config.json file in your project.  Below is a sample configuration whic
     "keyManagerProxyUsername": "proxy-username",
     "keyManagerProxyPassword": "proxy-password",
 
-    // Optional: set to 0 to not reject unauthorized calls
+    // Optional: Self Signed Certificates - Set to 0 to not reject invalid or self-signed certificates
     "nodeTlsRejectUnauthorized": 0
 }
 ```
@@ -144,8 +144,7 @@ Symphony.getDatafeedEventsService({
 ```
 
 ## Advanced Configuration for Load Balancing
-Create an additional configuration file to support load balancing.
-There are 3 supported types:
+Create an additional configuration file to support load balancing.  There are 3 supported types:
 * Round-Robin
 * Random
 * External
@@ -179,11 +178,17 @@ There is also support for sticky sessions, which should be true for any bot that
 To load the configuration
 
 ```
-Symphony.initBot(__dirname + '/config.json', __dirname + '/config.lb.json')
+Symphony.initBot(__dirname + '/config.json', __dirname + '/lb-config.json')
 ```
 
 
 # Release Notes
+
+## 1.0.6
+- Feature - Agent Server Load balancing
+- Improved handling for Self-Signed certificates using `nodeTlsRejectUnauthorized` variable
+- Fixed Error handling conflicts for `retryConnection`
+- Updated NPM package dependencies to include latest versions
 
 ## 1.0.5
 - Extended event service to report on all Symphony Datafeed events
