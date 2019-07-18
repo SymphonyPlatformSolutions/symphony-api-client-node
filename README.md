@@ -184,6 +184,9 @@ Symphony.initBot(__dirname + '/config.json', __dirname + '/lb-config.json')
 
 # Release Notes
 
+## 1.0.7
+- Improved handling for stopping and shutdown of the `DatafeedEventsService`by including a stopping and shutdown event. The stopping event indicates when it starts to stop. The SDK user can use this event to start to shutdown its own services in preparation for a stop.
+
 ## 1.0.6
 - Feature - Agent Server Load balancing
 - Improved handling for Self-Signed certificates using `nodeTlsRejectUnauthorized` variable
