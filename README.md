@@ -83,7 +83,14 @@ Create a config.json file in your project.  Below is a sample configuration whic
     "keyManagerProxyPassword": "proxy-password",
 
     // Optional: Self Signed Certificates - Set to 0 to not reject invalid or self-signed certificates
-    "nodeTlsRejectUnauthorized": 0
+    "nodeTlsRejectUnauthorized": 0,
+
+    // Optional: maximum number of retries to reconnect to the agent, default value is 10
+    "maxRetries": 10,
+
+    // Optional: maximum waiting time between retries in the exponential backoff algorithm,
+    // default is 64 seconds, like in Google Cloud Storage lib
+    "maxWaitInterval": 64
 }
 ```
 

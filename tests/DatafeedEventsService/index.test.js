@@ -274,4 +274,15 @@ describe('DatafeedEventsService', () => {
 
     expect(console.warn).toHaveBeenCalledTimes(2)
   })
+
+  it('checks retry wait interval calculation', () => {
+    const feed = new DatafeedEventsService()
+
+    let retryCount = 2
+    let maxWaitInterval = 64000 // 64 seconds
+    let waitInterval = feed._getExponentialWaitInterval(retryCount, maxWaitInterval)
+
+    // second try must be 4 seconds
+    expect(waitInterval).toEqual(4000);
+  })
 })
