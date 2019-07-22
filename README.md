@@ -191,6 +191,9 @@ Symphony.initBot(__dirname + '/config.json', __dirname + '/lb-config.json')
 
 # Release Notes
 
+## 1.0.8
+- Improved Datafeed connection retry logic.  Addition of exponential backoff and managed retries.  You can now set the `maxRetries` and `maxWaitInterval` for retrying Agent server connections.
+
 ## 1.0.7
 - Improved handling for stopping and shutdown of the `DatafeedEventsService` by including a stopping and shutdown event. The stopping event indicates when it starts to stop. The SDK user can use this event to start to shutdown its own services in preparation for a stop.
 
