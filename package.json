@@ -1,6 +1,6 @@
 {
   "name": "symphony-api-client-node",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Symphony API Client for NodeJS",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,8 @@
   "author": "Symphony Platform Solutions",
   "contributors": [
     "Olivier Poupeney <olivier.poupeney@symphony.com>",
-    "Vinay Mistry <vinay.mistry@symphony.com>"
+    "Vinay Mistry <vinay.mistry@symphony.com>",
+    "Mikhail Tarasov <mikhail.tarasov@symphony.com>"
   ],
   "license": "MIT",
   "devDependencies": {
