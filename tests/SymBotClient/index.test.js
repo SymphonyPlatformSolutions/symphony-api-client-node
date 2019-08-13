@@ -46,22 +46,22 @@ describe('SymBotClient', () => {
     ['listUsers', [], 'get', '/pod/v2/admin/user/list?skip=0&limit=1000'],
 
     // ConnectionsClient
-    ['getPendingConnections', [], 'get', '/pod/v1/connnection/list?status=pending_outgoing'],
-    ['getInboundPendingConnections', [], 'get', '/pod/v1/connnection/list?status=pending_incoming'],
-    ['getAllConnections', [], 'get', '/pod/v1/connnection/list?status=all'],
-    ['getAcceptedConnections', [], 'get', '/pod/v1/connnection/list?status=accepted'],
-    ['getRejectedConnections', [], 'get', '/pod/v1/connnection/list?status=rejected'],
+    ['getPendingConnections', [], 'get', '/pod/v1/connection/list?status=pending_outgoing'],
+    ['getInboundPendingConnections', [], 'get', '/pod/v1/connection/list?status=pending_incoming'],
+    ['getAllConnections', [], 'get', '/pod/v1/connection/list?status=all'],
+    ['getAcceptedConnections', [], 'get', '/pod/v1/connection/list?status=accepted'],
+    ['getRejectedConnections', [], 'get', '/pod/v1/connection/list?status=rejected'],
     [
       'getConnections',
       ['dummy', 'abc123'],
       'get',
-      '/pod/v1/connnection/list?status=all?userIds=abc123',
+      '/pod/v1/connection/list?status=all?userIds=abc123',
     ],
-    ['acceptConnectionRequest', [], 'post', '/pod/v1/connnection/accept'],
-    ['rejectConnectionRequest', [], 'post', '/pod/v1/connnection/reject'],
-    ['sendConnectionRequest', [], 'post', '/pod/v1/connnection/create'],
-    ['removeConnection', ['abc123'], 'post', '/pod/v1/connnection/user/abc123/remove'],
-    ['getConnectionRequestStatus', ['abc123'], 'get', '/pod/v1/connnection/user/abc123/info'],
+    ['acceptConnectionRequest', [], 'post', '/pod/v1/connection/accept'],
+    ['rejectConnectionRequest', [], 'post', '/pod/v1/connection/reject'],
+    ['sendConnectionRequest', [], 'post', '/pod/v1/connection/create'],
+    ['removeConnection', ['abc123'], 'post', '/pod/v1/connection/user/abc123/remove'],
+    ['getConnectionRequestStatus', ['abc123'], 'get', '/pod/v1/connection/user/abc123/info'],
 
     // FirehoseClient
 
@@ -79,9 +79,9 @@ describe('SymBotClient', () => {
     // OBOClient
 
     // oboAuthenticateByUserId
-    ['oboGetAllConnections', [], 'get', '/pod/v1/connnection/list?status=all'],
-    ['oboGetConnection', ['abc123'], 'get', '/pod/v1/connnection/user/abc123/info'],
-    ['oboGetUserIMStreamId', [], 'post', '/pod/v1/admin/im/create'],
+    ['oboGetAllConnections', [], 'get', '/pod/v1/connection/list?status=all'],
+    ['oboGetConnection', ['abc123'], 'get', '/pod/v1/connection/user/abc123/info'],
+    ['oboGetUserIMStreamId', [], 'post', '/pod/v1/im/create'],
     // oboSendMessage - multipart boundary header
 
     // SignalsClient
