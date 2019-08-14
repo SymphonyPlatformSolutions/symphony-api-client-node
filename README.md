@@ -190,6 +190,9 @@ Symphony.initBot(__dirname + '/config.json', __dirname + '/lb-config.json')
 
 
 # Release Notes
+## 1.0.9
+- Support for Application Authentication
+- Support for OBO authentication
 
 ## 1.0.8
 - Improved Datafeed connection retry logic.  Addition of exponential backoff and managed retries.  You can now set the `maxRetries` and `maxWaitInterval` for retrying Agent server connections.
