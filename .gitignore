@@ -61,3 +61,6 @@ config.json
 /certificates
 
 jest.config.js
+.idea
+*.iml
+
