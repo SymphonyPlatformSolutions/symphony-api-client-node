@@ -190,6 +190,9 @@ Symphony.initBot(__dirname + '/config.json', __dirname + '/lb-config.json')
 
 
 # Release Notes
+## 1.0.10
+- Addition of Data Entity Helpers to SymMessageParser.  Allowing you to parse Symphony messages to extract getCashtags(), getHashtags or getMentions() directly.
+
 ## 1.0.9
 - Support for Application Authentication
 - Support for OBO authentication
