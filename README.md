@@ -150,6 +150,52 @@ Symphony.getDatafeedEventsService({
   })
 ```
 
+## Symphony Elements Example Usage
+
+```javascript
+const messageHandler = (event, messages) => {
+  messages.forEach((message, index) => {
+    let reply_message = 'Hello ' + message.user.firstName + ', hope you are doing well!!'
+    Symphony.sendMessage(message.stream.streamId, reply_message, null, Symphony.MESSAGEML_FORMAT)
+  })
+}
+
+const elementsHandler = (event, actions) => {
+  actions.forEach((action, index) => {
+    console.log(action)
+  })
+}
+
+Symphony.initBot(__dirname + '/config.json')
+  .then((symAuth) => {
+    const handlers = {
+      onMessageSent: messageHandler.bind(null, 'MESSAGE_RECEIVED'),
+      onSymphonyElementsAction: elementsHandler.bind(null, 'ELEMENTS_ACTION_RECEIVED')
+    }
+    Symphony.getDatafeedEventsService(handlers)
+  })
+  ```
+
+## Symphony Elements Form Builder
+
+```javascript
+const formML = Symphony
+  .formBuilder('my-form')
+  .addDiv("hello")
+  .addLineBreaks(3)
+  .addHeader(6, "Yes")
+  .addTextField('my-text-field', '', 'Type something')
+  .addButton('my-button', 'Button')
+  .addTextArea('my-ta', 'displayed', 'type here')
+  .addCheckBox('my-cb', 'Hey CB', 'x')
+  .addRadioButton('my-rb', 'Hey RB', 'rb-val')
+  .addPersonSelector('my-ps', 'Select people', true)
+  .addTableSelect('my-ts', )
+  .addLineBreak()
+  .formatElement()
+Symphony.sendMessage('streamId', formML)
+```
+
 ## Advanced Configuration for Load Balancing
 Create an additional configuration file to support load balancing.  There are 3 supported types:
 * Round-Robin
@@ -190,6 +236,9 @@ Symphony.initBot(__dirname + '/config.json', __dirname + '/lb-config.json')
 
 
 # Release Notes
+## 1.0.11
+- Addition of Symphony Elements Support.
+
 ## 1.0.10
 - Addition of Data Entity Helpers to SymMessageParser.  Allowing you to parse Symphony messages to extract getCashtags(), getHashtags or getMentions() directly.
 
