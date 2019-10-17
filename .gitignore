@@ -64,3 +64,5 @@ jest.config.js
 .idea
 *.iml
 
+# Workspace settings
+.vscode
