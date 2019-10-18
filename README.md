@@ -236,6 +236,9 @@ Symphony.initBot(__dirname + '/config.json', __dirname + '/lb-config.json')
 
 
 # Release Notes
+## 1.0.12
+- Update amends how the Datafeed Service handles 503 errors.  Addition of connection retry for 503 status code events.
+
 ## 1.0.11
 - Addition of Symphony Elements Support.
 
