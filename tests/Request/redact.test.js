@@ -30,7 +30,7 @@ describe('Redact', () => {
 
   it('No exception with null value', async () => {
     let redactedToken = redact(null);
-    expect(redactedToken).toEqual(redactedToken);
+    expect(redactedToken).toEqual(null);
   })
 
 });
