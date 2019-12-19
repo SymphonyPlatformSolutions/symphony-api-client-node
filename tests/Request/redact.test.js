@@ -25,12 +25,13 @@ describe('Redact', () => {
   it('Do not replace email', async () => {
     let redactedToken = redact('[DEBUG] UsersClient/getUserFromIdV3/str {"users":[{"id":351775001411684,"emailAddre' +
         'ss":"cwt_api_service_user@psdev.symphony.com","displayName":"cwt_api_service_user","company":"Symphony Platform');
-    expect(redactedToken).toEqual(redactedToken);
+    expect(redactedToken).toEqual('[DEBUG] UsersClient/getUserFromIdV3/str {"users":[{"id":351775001411684,"emailAddre' +
+        'ss":"cwt_api_service_user@psdev.symphony.com","displayName":"cwt_api_service_user","company":"Symphony Platform');
   });
 
   it('No exception with null value', async () => {
     let redactedToken = redact(null);
-    expect(redactedToken).toEqual(redactedToken);
+    expect(redactedToken).toEqual(null);
   })
 
 });
