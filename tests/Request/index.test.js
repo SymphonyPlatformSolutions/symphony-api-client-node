@@ -21,6 +21,20 @@ describe('Request helper', () => {
     expect(body).toEqual({})
   })
 
+  it('handles non-json response', async () => {
+    const response = `<html>
+    <head><title>502 Bad Gateway</title></head>
+    <body bgcolor="white">
+    <center><h1>502 Bad Gateway</h1></center>
+    </body>
+    </html>`;
+    nock('https://example.com')
+      .get('/test')
+      .reply(502, response, { 'content-type': 'text/html'})
+    const body = await request({ host: 'example.com', path: '/test' })
+    expect(body).toEqual(response)
+  })
+
   it('sends JSON body', async () => {
     const requestBody = { some: 'body' }
     nock('https://example.com')
