@@ -116,6 +116,15 @@ describe('DatafeedEventsService', () => {
     expect(messageHandler).toHaveBeenCalledWith(parsedMessages)
   })
 
+  it('corrects wrongly passed feedId', () => {
+    const feed = new DatafeedEventsService()
+
+    expect(feed._fixFeedId(id)).toEqual(id);
+    expect(feed._fixFeedId('undefined')).toEqual(null);
+    expect(feed._fixFeedId('null')).toEqual(null);
+    expect(feed._fixFeedId(null)).toEqual(null);
+  })
+
   it('continues reading when feed responds or times out', async () => {
     mockRead(id)
       .times(2)
