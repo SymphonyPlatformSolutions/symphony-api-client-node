@@ -48,6 +48,7 @@ Create a config.json file in your project.  Below is a sample configuration whic
     "podPort": 443,
     "agentHost": "my-company-name.symphony.com",
     "agentPort": 443,
+	"pathPrefix": "/proxy/v1",
 
     // For bots only
     "botUsername": "my-bot-name",

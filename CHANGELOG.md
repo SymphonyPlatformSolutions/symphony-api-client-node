@@ -1,4 +1,7 @@
 # Release Notes
+## 1.1.1
+- Added pathPrefix configuration to support calling APIs from gateway
+
 ## 1.1.0
 - Bug fix. Support non-json responses.
 
