@@ -1,4 +1,7 @@
 # Release Notes
+## 1.1.1
+- Compatibility support for Symphony Elements 1.1
+
 ## 1.1.0
 - Bug fix. Support non-json responses.
 
