@@ -701,13 +701,12 @@ Array [
     Object {
       "agent": undefined,
       "headers": Object {
-        "Content-Type": "application/json",
         "sessionToken": "session-token",
       },
       "host": "pod.example.com:443",
       "hostname": "pod.example.com",
       "method": "post",
-      "path": "/pod/v1/admin/im/create",
+      "path": "/pod/v1/im/create",
       "port": 443,
       "proto": "https",
     },
@@ -929,7 +928,6 @@ Array [
     Object {
       "agent": undefined,
       "headers": Object {
-        "Content-Type": "application/json",
         "keyManagerToken": "key-manager-token",
         "sessionToken": "session-token",
       },
@@ -971,7 +969,6 @@ Array [
     Object {
       "agent": undefined,
       "headers": Object {
-        "Content-Type": "application/json",
         "keyManagerToken": "key-manager-token",
         "sessionToken": "session-token",
       },
