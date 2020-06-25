@@ -134,6 +134,7 @@ describe('Request helper', () => {
 
     return expect(request({ host: 'example.com', path: '/test' })).rejects.toEqual({
       status: 'error',
+      statusCode: "ECONNRESET"
     })
   })
 })

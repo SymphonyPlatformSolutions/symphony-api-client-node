@@ -38,7 +38,7 @@ describe('SymLoadBalancerConfigLoader', () => {
     jest.clearAllMocks();
   });
 
-  it('configues lb', () => {
+  it('configures lb', () => {
     mockFs.readFile = jest.fn()
       .mockImplementationOnce((path, cb) => {
         return cb(null, JSON.stringify(mainMockConfig))
@@ -50,11 +50,11 @@ describe('SymLoadBalancerConfigLoader', () => {
     return SymBotClient.initBot('a-path', 'b-path').then(symAuth => {
       expect(mockFs.readFile).toHaveBeenCalledWith('a-path', expect.any(Function));
 
-      expect(symAuth.config.podHost).toEqual(mainMockConfig.podHost);
+      expect(SymBotClient.config.podHost).toEqual(mainMockConfig.podHost);
 
-      expect(symAuth.config.loadBalancing.method).toEqual(lbMockConfig.loadBalancing.method);
-      expect(symAuth.config.loadBalancing.method).toEqual(lbMockConfig.loadBalancing.method);
-      expect(symAuth.config.agentServers.length).toEqual(lbMockConfig.agentServers.length);
+      expect(SymBotClient.config.loadBalancing.method).toEqual(lbMockConfig.loadBalancing.method);
+      expect(SymBotClient.config.loadBalancing.method).toEqual(lbMockConfig.loadBalancing.method);
+      expect(SymBotClient.config.agentServers.length).toEqual(lbMockConfig.agentServers.length);
     });
   });
 });
