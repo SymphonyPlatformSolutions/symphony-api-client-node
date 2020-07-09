@@ -42,12 +42,16 @@ Create a config.json file in your project.  Below is a sample configuration whic
     // Mandatory section
     "sessionAuthHost": "my-company-name-api.symphony.com",
     "sessionAuthPort": 8444,
+    "sessionAuthContextPath": "/app",
     "keyAuthHost": "my-company-name-api.symphony.com",
     "keyAuthPort": 8444,
+    "keyAuthContextPath": "/app",
     "podHost": "my-company-name.symphony.com",
     "podPort": 443,
+    "podContextPath": "/app",
     "agentHost": "my-company-name.symphony.com",
     "agentPort": 443,
+    "agentContextPath": "/app",
 
     // For bots only
     "botUsername": "my-bot-name",
