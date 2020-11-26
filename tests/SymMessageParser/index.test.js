@@ -6,24 +6,60 @@ describe('Message parsing', () => {
     SymBotAuth.botUser = { id: -1};
   });
 
-  test('simple message parsing', () => {
+  test('invalid opening tag', () => {
+    assertMessageParsed('<divsa data-format="PresentationML" data-version="2.0">Hello, World</div>',
+      'Hello, World');
+  });
+
+  test('no opening tag', () => {
+    assertMessageParsed(' data-format="PresentationML" data-version="2.0">Hello, World</>',
+      undefined);
+  });
+
+  test('no closing tag', () => {
+    assertMessageParsed('<div data-format="PresentationML" data-version="2.0">Hello, World',
+      undefined);
+  });
+
+  test('simple message', () => {
     assertMessageParsed('<div data-format="PresentationML" data-version="2.0">Hello, World</div>',
       'Hello, World');
   });
 
-  test('complex message parsing', () => {
+  test('simple message with spaces around div', () => {
+    assertMessageParsed('   <div data-format="PresentationML" data-version="2.0">Hello, World</div>   ',
+      'Hello, World');
+  });
+
+  test('message enclosed in markups', () => {
     assertMessageParsed('<div data-format="PresentationML" data-version="2.0"><b>Hello, World</b></div>',
       'Hello, World');
   });
 
-  test('complex message parsing', () => {
+  test('message enclosed in markups with spaces around div', () => {
+    assertMessageParsed('  <div data-format="PresentationML" data-version="2.0"><b>Hello, World</b></div>  ',
+      'Hello, World');
+  });
+
+  test('message partially enclosed in markups', () => {
     assertMessageParsed('<div data-format="PresentationML" data-version="2.0">Hello <b>wonderful</b> world</div>',
       'Hello wonderful world');
   });
 
-  test('complex message parsing', () => {
+  test('message partially enclosed in markups with spaces around div', () => {
+    assertMessageParsed('  <div data-format="PresentationML" data-version="2.0">Hello <b>wonderful</b> world</div>  ',
+      'Hello wonderful world');
+  });
+
+  test('message with several levels of markups', () => {
     assertMessageParsed(
       '<div data-format="PresentationML" data-version="2.0">Hello <b>wonderful <c>and</c> beautiful</b> world</div>',
+      'Hello wonderful and beautiful world');
+  });
+
+  test('message with several levels of markups with spaces around div', () => {
+    assertMessageParsed(
+      '   <div data-format="PresentationML" data-version="2.0">Hello <b>wonderful <c>and</c> beautiful</b> world</div>  ',
       'Hello wonderful and beautiful world');
   });
 });
