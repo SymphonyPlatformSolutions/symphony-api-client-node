@@ -36,6 +36,11 @@ describe('Message parsing', () => {
       'Hello, World');
   });
 
+  test('message enclosed in div markups', () => {
+    assertMessageParsed('<div data-format="PresentationML" data-version="2.0"><div>Hello, World</div></div>',
+      'Hello, World');
+  });
+
   test('message enclosed in markups with spaces around div', () => {
     assertMessageParsed('  <div data-format="PresentationML" data-version="2.0"><b>Hello, World</b></div>  ',
       'Hello, World');
@@ -43,6 +48,11 @@ describe('Message parsing', () => {
 
   test('message partially enclosed in markups', () => {
     assertMessageParsed('<div data-format="PresentationML" data-version="2.0">Hello <b>wonderful</b> world</div>',
+      'Hello wonderful world');
+  });
+
+  test('message partially enclosed in div markups', () => {
+    assertMessageParsed('<div data-format="PresentationML" data-version="2.0">Hello <div>wonderful</div> world</div>',
       'Hello wonderful world');
   });
 
