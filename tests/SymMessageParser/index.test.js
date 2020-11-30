@@ -67,6 +67,12 @@ describe('Message parsing', () => {
       'Hello wonderful and beautiful world');
   });
 
+  test('message with several levels of markups, innermost div', () => {
+    assertMessageParsed(
+      '<div data-format="PresentationML" data-version="2.0">Hello <b>wonderful <div>and</div> beautiful</b> world</div>',
+      'Hello wonderful and beautiful world');
+  });
+
   test('message with several levels of markups with spaces around div', () => {
     assertMessageParsed(
       '   <div data-format="PresentationML" data-version="2.0">Hello <b>wonderful <c>and</c> beautiful</b> world</div>  ',
