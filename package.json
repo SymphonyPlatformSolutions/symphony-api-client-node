@@ -9,7 +9,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "form-data": "^2.3.3",
+    "form-data": "^3.0.0",
     "https-proxy-agent": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
     "kew": "^0.7.0",
