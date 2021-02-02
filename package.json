@@ -13,7 +13,6 @@
     "https-proxy-agent": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
     "kew": "^0.7.0",
-    "njwt": "^1.0.0",
     "pubsub-js": "^1.9.2"
   },
   "engines": {
