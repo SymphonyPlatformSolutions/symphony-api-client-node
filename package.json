@@ -12,7 +12,7 @@
     "form-data": "^3.0.0",
     "https-proxy-agent": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
-    "kew": "^0.7.0",
+    "q": "^1.5.1",
     "pubsub-js": "^1.9.2"
   },
   "engines": {
@@ -35,7 +35,7 @@
   "license": "MIT",
   "devDependencies": {
     "jest": "^26.6.3",
-    "nock": "^10.0.6"
+    "nock": "^13.0.7"
   },
   "jest": {
     "verbose": true
