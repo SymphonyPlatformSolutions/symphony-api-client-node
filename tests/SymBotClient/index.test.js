@@ -55,18 +55,13 @@ describe('SymBotClient', () => {
       'getConnections',
       ['dummy', 'abc123'],
       'get',
-      '/pod/v1/connection/list?status=all?userIds=abc123',
+      '/pod/v1/connection/list?status=all&userIds=abc123',
     ],
     ['acceptConnectionRequest', [], 'post', '/pod/v1/connection/accept'],
     ['rejectConnectionRequest', [], 'post', '/pod/v1/connection/reject'],
     ['sendConnectionRequest', [], 'post', '/pod/v1/connection/create'],
     ['removeConnection', ['abc123'], 'post', '/pod/v1/connection/user/abc123/remove'],
     ['getConnectionRequestStatus', ['abc123'], 'get', '/pod/v1/connection/user/abc123/info'],
-
-    // FirehoseClient
-
-    // getFirehoseEventsService
-    // stopFirehoseEventsService
 
     // MessagesClient
 

@@ -232,12 +232,10 @@ Array [
       "headers": Object {
         "sessionToken": "session-token",
       },
-      "host": "pod.example.com:443",
       "hostname": "pod.example.com",
       "method": "GET",
-      "path": "/pod/v1/connection/list?status=all?userIds=abc123",
+      "path": "/pod/v1/connection/list?status=all&userIds=abc123",
       "port": 443,
-      "proto": "https",
     },
     [Function],
   ],
