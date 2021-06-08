@@ -130,11 +130,10 @@ describe('Request helper', () => {
     nock('https://example.com')
       .get('/test')
       .socketDelay(70000)
-      .reply(200, '')
+      .replyWithError({})
 
     return expect(request({ host: 'example.com', path: '/test' })).rejects.toEqual({
-      status: 'error',
-      statusCode: "ECONNRESET"
+      status: 'error'
     })
   })
 })
