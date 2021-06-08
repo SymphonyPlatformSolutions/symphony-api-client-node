@@ -198,11 +198,11 @@ describe('DatafeedEventsService', () => {
     expect(errorHandler).toHaveBeenCalledWith({ status: 'error' })
   })
 
-  it('reconnects on read HTTP 400 error, emits on 500', async () => {
+  it('reconnects on read HTTP 400 error, emits on 404', async () => {
     mockRead(id).reply(400)
     mockCreate().reply(200, { id })
     mockRead(id).reply(200, mockBody)
-    mockRead(id).reply(500)
+    mockRead(id).reply(404)
 
     const messageHandler = jest.fn()
     const errorHandler = jest.fn()
@@ -210,7 +210,7 @@ describe('DatafeedEventsService', () => {
     await mockHasBeenCalled(messageHandler)
     await mockHasBeenCalled(errorHandler)
 
-    expect(errorHandler).toHaveBeenCalledWith({ status: 'error', statusCode: 500 })
+    expect(errorHandler).toHaveBeenCalledWith({ status: 'error', statusCode: 404 })
     expect(messageHandler).toHaveBeenCalledWith(parsedMessages)
   })
 
