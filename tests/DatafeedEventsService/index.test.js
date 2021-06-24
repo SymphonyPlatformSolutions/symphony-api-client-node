@@ -9,10 +9,12 @@ jest.mock('../../lib/SymBotAuth', () => ({
   sessionAuthToken: 'session-token',
   kmAuthToken: 'key-manager-token',
   botUser: { displayName: 'test' },
+  authenticate: jest.fn(() => Promise.resolve())
 }))
 
 const nock = require('nock')
 const DatafeedEventsService = require('../../lib/DatafeedEventsService')
+const SymBotAuth = require('../../lib/SymBotAuth')
 
 const mockBody = [
   {
@@ -140,6 +142,24 @@ describe('DatafeedEventsService', () => {
     await mockHasBeenCalled(messageHandler)
 
     expect(messageHandler).toHaveBeenCalledTimes(2)
+  })
+
+  it('continues reading when authentication expires', async () => {
+    mockRead(id)
+        .times(1)
+        .reply(401)
+    mockRead(id)
+        .times(2)
+        .reply(200, mockBody)
+
+    const messageHandler = jest.fn()
+    const feed = initFeed(messageHandler, id)
+    await mockHasBeenCalled(messageHandler)
+    stopFeed(feed)
+    await mockHasBeenCalled(messageHandler)
+
+    expect(messageHandler).toHaveBeenCalledTimes(2)
+    expect(SymBotAuth.authenticate).toHaveBeenCalledTimes(1)
   })
 
   it('emits on user added', async () => {
