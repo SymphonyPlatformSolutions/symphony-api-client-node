@@ -57,4 +57,14 @@ describe('SymLoadBalancerConfigLoader', () => {
       expect(SymBotClient.config.agentServers.length).toEqual(lbMockConfig.agentServers.length);
     });
   });
+
+  it('configures lb from objects', () => {
+    return SymBotClient.initBotFromObjects(mainMockConfig, lbMockConfig).then(symAuth => {
+      expect(SymBotClient.config.podHost).toEqual(mainMockConfig.podHost);
+
+      expect(SymBotClient.config.loadBalancing.method).toEqual(lbMockConfig.loadBalancing.method);
+      expect(SymBotClient.config.loadBalancing.method).toEqual(lbMockConfig.loadBalancing.method);
+      expect(SymBotClient.config.agentServers.length).toEqual(lbMockConfig.agentServers.length);
+    });
+  });
 });
