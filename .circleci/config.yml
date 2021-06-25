@@ -10,9 +10,7 @@ jobs:
       tag: '14.15.4'
     steps:
       - checkout
-      - run:
-          name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/repo/.npmrc
+      - run: npm set //registry.npmjs.org/:_authToken=$npm_TOKEN
       - run: npm publish
 workflows:
   node-tests:
