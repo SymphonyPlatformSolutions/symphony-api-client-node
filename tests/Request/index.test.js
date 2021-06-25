@@ -128,12 +128,13 @@ describe('Request helper', () => {
 
   it('handles socket timeout', () => {
     nock('https://example.com')
-      .get('/test')
-      .socketDelay(70000)
-      .replyWithError({})
+        .get('/test')
+        .delay(1000)
+        .reply(200, '')
 
-    return expect(request({ host: 'example.com', path: '/test' })).rejects.toEqual({
-      status: 'error'
+    return expect(request({ host: 'example.com', path: '/test' }, null, null, false, 500)).rejects.toEqual({
+      status: 'error',
+      statusCode: "ECONNRESET"
     })
   })
 })
