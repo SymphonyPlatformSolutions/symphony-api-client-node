@@ -1,3 +1,8 @@
+# :warning: End-of-Life Notice :warning:
+`symphony-api-client-node` will be supported until **end of 2021**, please consider moving [BDK for Java](https://github.com/finos/symphony-bdk-java) 
+or [BDK for Python](https://github.com/finos/symphony-bdk-python) instead!
+
+----
 # symphony-api-client-node
 Symphony API Client for NodeJS
 
