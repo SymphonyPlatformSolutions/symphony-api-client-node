@@ -1,3 +1,13 @@
+# :warning: End-of-Life Notice :warning:
+
+Symphony will stop supporting the NodeJS SDK in the coming months, with the following timeline: In **January 2022**, 
+only critical issues will be fixed in the legacy NodeJS SDK.
+In **March 2022**, the SDK will no longer be actively supported. 
+At this date you will still be able to use the SDK, however, please consider our BDKs in [Java](https://github.com/finos/symphony-bdk-java),
+[Python](https://github.com/finos/symphony-bdk-python) or [.Net](https://github.com/SymphonyPlatformSolutions/symphony-api-client-dotnet) 
+if you prefer to benefit from a better support.
+
+----
 # symphony-api-client-node
 Symphony API Client for NodeJS
 
